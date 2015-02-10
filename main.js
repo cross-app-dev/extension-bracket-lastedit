@@ -5,7 +5,9 @@ define(function (require, exports, module) {
     /* Load command manager module from Bracket core as well as menu module.*/
     var CommandManager = brackets.getModule("command/CommandManager"),
         EditorManager  = brackets.getModule("editor/EditorManager"),
-        Menus          = brackets.getModule("command/Menus");
+        MY_COMMAND_ID = "algonquinlive.maad.show0017.lastedit",  // package-style naming to avoid collisions
+        Menus         = brackets.getModule("command/Menus"),
+        menu          = Menus.getMenu(Menus.AppMenuBar.NAVIGATE_MENU);
 
 
     // Function to run when the menu item is clicked or corresponding keys are pressed.
@@ -17,14 +19,12 @@ define(function (require, exports, module) {
         }
     }
 
-
     // First, register a command - a UI-less object associating an id to a handler
-    var MY_COMMAND_ID = "algonquinlive.maad.show0017.lastedit";   // package-style naming to avoid collisions
     CommandManager.register("Last Edit", MY_COMMAND_ID, lastEditHandler);
-
+    
     // Then create a menu item bound to the command
     // The label of the menu item is the name that we used during regisertation of our new command.
-    var menu = Menus.getMenu(Menus.AppMenuBar.NAVIGATE_MENU);
+
     //menu.addMenuItem(MY_COMMAND_ID);
 
     // We could also add a key binding at the same time.
