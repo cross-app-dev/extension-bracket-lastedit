@@ -2,11 +2,12 @@
 define(function (require, exports, module) {
     "use strict";
 
+    /* Load command manager module from Bracket core as well as menu module.*/
     var CommandManager = brackets.getModule("command/CommandManager"),
         Menus          = brackets.getModule("command/Menus");
 
 
-    // Function to run when the menu item is clicked
+    // Function to run when the menu item is clicked or corresponding keys are pressed.
     function lastEditHandler() {
         window.alert("Hello, world!");
     }
@@ -17,7 +18,7 @@ define(function (require, exports, module) {
     CommandManager.register("Last Edit", MY_COMMAND_ID, lastEditHandler);
 
     // Then create a menu item bound to the command
-    // The label of the menu item is the name we gave the command (see above)
+    // The label of the menu item is the name that we used during regisertation of our new command.
     var menu = Menus.getMenu(Menus.AppMenuBar.NAVIGATE_MENU);
     //menu.addMenuItem(MY_COMMAND_ID);
 
