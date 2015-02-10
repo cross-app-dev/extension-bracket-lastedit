@@ -4,12 +4,17 @@ define(function (require, exports, module) {
 
     /* Load command manager module from Bracket core as well as menu module.*/
     var CommandManager = brackets.getModule("command/CommandManager"),
+        EditorManager  = brackets.getModule("editor/EditorManager"),
         Menus          = brackets.getModule("command/Menus");
 
 
     // Function to run when the menu item is clicked or corresponding keys are pressed.
     function lastEditHandler() {
-        window.alert("Hello, world!");
+        var editor = EditorManager.getFocusedEditor();
+        if (editor) {
+            var insertionPos = editor.getCursorPos();
+            editor.document.replaceRange("Hello, world!", insertionPos);
+        }
     }
 
 
